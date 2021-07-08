@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  emqx:
+    image: emqx/emqx:latest
+    environment:
+    - "EMQX_NAME=emqx"
+    - "EMQX_HOST=node1.emqx.io"
+    - "EMQX_CLUSTER__DISCOVERY=static"
+    - "EMQX_CLUSTER__STATIC__SEEDS=emqx@node1.emqx.io, emqx@node2.emqx.io"
+    ports:
+    - "1883:1883"
+    - "8081:8081"
+    - "8083:8083"
+    - "8084:8084"
+
+volumes:
+  vol-emqx-data:
+    name: foo-emqx-data
+  vol-emqx-etc:
+    name: foo-emqx-etc
+  vol-emqx-log:
+    name: foo-emqx-log
+
